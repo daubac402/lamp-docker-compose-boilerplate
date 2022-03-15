@@ -41,7 +41,7 @@ docker-compose up -d
 
 ## Usefull commands
 ```
-docker-compose exec yoursite-web bash
+docker-compose exec web bash
 
-docker-compose logs yoursite-web -f
+docker-compose logs web -f
 ```
