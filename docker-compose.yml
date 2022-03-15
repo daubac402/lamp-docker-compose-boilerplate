@@ -1,12 +1,12 @@
-version: '3.1'
+version: "3.1"
 
 services:
   web:
     container_name: yoursite-web
     build: ./docker
     ports:
-      - '8000:80'
-      - '444:443'
+      - "8000:80"
+      - "444:443"
     privileged: true
     volumes:
       - ./:/var/www/html
@@ -21,7 +21,7 @@ services:
       MYSQL_DATABASE: yourDatabase
       MYSQL_USER: yourUser
       MYSQL_PASSWORD: yourPassword
-      TZ: 'Asia/Tokyo'
+      TZ: "Asia/Tokyo"
     command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
     ports:
       - 3306:3306
@@ -31,13 +31,13 @@ services:
       - ./docker/db/sql:/docker-entrypoint-initdb.d
 
   redis:
-    image: 'redis:latest'
+    image: "redis:latest"
     container_name: yoursite-redis-host
     volumes:
-      - './docker/redis/data:/data'
+      - "./docker/redis/data:/data"
     command: redis-server --requirepass yourPassword
     ports:
-      - '6379:6379'
+      - "6379:6379"
 
   # phpmyadmin:
   #   container_name: phpmyadmin
