@@ -17,7 +17,7 @@ If you are going to use Laravel, it will be normally slow a lot in Docker (see: 
 ### apache
 - Expose port 8000 for http, 444 for https
 - You can add many .conf as you want in /docker/apache/
-- Include self signed certificate for https in /docker/apache/ssl, so that it can be used for local development
+- Included a self signed certificate for https in /docker/apache/ssl, so that it can be used for local development
 - You can see logs in /docker/apache/logs
 
 ### php
