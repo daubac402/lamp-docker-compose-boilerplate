@@ -14,8 +14,11 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - name: Test the docker-compose Build process
+    - name: Build the docker-compose stack
+      run: docker-compose up -d
+    - name: Check running containers
+      run: docker-compose ps
+    - name: Check the site
       run: |
-        docker-compose build
-        docker-compose up --abort-on-container-exit
-      working-directory: ./
+        sleep 300
+        curl localhost:8000
