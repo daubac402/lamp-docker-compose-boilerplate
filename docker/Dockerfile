@@ -17,16 +17,13 @@ RUN apt-get update && apt-get install -y \
     libzip-dev \
     zip \
     unzip \
-    && docker-php-ext-install zip pdo_mysql mysqli \
-    && docker-php-ext-enable mysqli
+    && docker-php-ext-install zip mysql mysqli pdo pdo_mysql mbstring exif pcntl bcmath gd \
+    && docker-php-ext-enable zip mysql mysqli pdo pdo_mysql mbstring exif pcntl bcmath gd
 
 # Clear cache
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# Install PHP extensions
-RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd
-
-# Get latest Composer
+# Get latest Composer or specify a version (e.g. change: "latest" into "2.2")
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 ENV COMPOSER_ALLOW_SUPERUSER 1
 ENV COMPOSER_HOME /composer
