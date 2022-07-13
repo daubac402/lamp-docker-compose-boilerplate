@@ -17,7 +17,13 @@ RUN apt-get update && apt-get install -y \
     libzip-dev \
     zip \
     unzip \
-    && docker-php-ext-install zip mysql mysqli pdo pdo_mysql mbstring exif pcntl bcmath gd \
+    
+    # for php5.6
+    # && docker-php-ext-install zip mysql mysqli pdo pdo_mysql mbstring exif pcntl bcmath gd \
+    # && docker-php-ext-enable mysqli
+    
+    # for php7
+    && docker-php-ext-install zip pdo_mysql mysqli mbstring exif pcntl bcmath gd \
     && docker-php-ext-enable mysqli
 
 # Clear cache
