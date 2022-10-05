@@ -1,4 +1,5 @@
-FROM php:7.4-apache
+# Check available tags here: https://hub.docker.com/_/php/tags
+FROM php:8.1.11-apache
 
 COPY ./php/php.ini /usr/local/etc/php/
 COPY ./apache/*.conf /etc/apache2/sites-enabled/
@@ -17,12 +18,12 @@ RUN apt-get update && apt-get install -y \
     libzip-dev \
     zip \
     unzip \
-    
+    #
     # for php5.6
     # && docker-php-ext-install zip mysql mysqli pdo pdo_mysql mbstring exif pcntl bcmath gd \
     # && docker-php-ext-enable mysqli
-    
-    # for php7
+    #
+    # for php >= 7
     && docker-php-ext-install zip pdo_mysql mysqli mbstring exif pcntl bcmath gd \
     && docker-php-ext-enable mysqli
 
