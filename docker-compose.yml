@@ -14,7 +14,7 @@ services:
       - ./docker/apache/ssl:/etc/apache2/conf/ssl
 
   db:
-    image: mysql:5.7
+    image: mysql:latest
     container_name: yoursite-db-host
     environment:
       MYSQL_ROOT_PASSWORD: yourRootPassword

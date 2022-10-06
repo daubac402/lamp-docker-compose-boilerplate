@@ -5,8 +5,13 @@
 If you are going to use Laravel, it will be normally slow a lot in Docker (see: <https://dev.to/tylerlwsmith/speed-up-laravel-in-docker-by-moving-vendor-directory-19b9>). So you can make these changes to force the "vendor" folder (dependencies folder to be served from the container, not mount from host as normal):
 
 1. Add `- /var/www/html/vendor/` under the `- ./:/var/www/html` line in `docker-compose.yml` (Add a volume to Docker, but exclude "vendor" sub-folder)
-2. You need to run `composer install` first at Host (to prepare the "vendor" folder)
-3. Each time you run the app, you have to copy "vendor" from Host to Container `docker-compose up -d && docker-compose cp vendor web:/var/www/html/` or just make a `start.sh` file and put that long command into it
+2. 2 ways to do next
+   1. Prepare "vendor" folder from host
+      1. Run `composer install` in **your host** (to download all required packages to the "vendor" folder)
+      2. Each time you start the container, do this bellow (instead of normal `docker-compose up`) to copy "vendor" from Host to Container `docker-compose up -d && docker-compose cp vendor web:/var/www/html/` or just make a `start.sh` file and put that long command into it.
+   2. Prepare "vendor" folder in container each time the container starts
+      1. After `docker-compose up`
+      2. Run `composer install` in **your container** (to download all required packages to the "vendor" folder)
 
 ## Config your settings before we start
 
