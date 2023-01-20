@@ -7,7 +7,6 @@ services:
     ports:
       - "8000:80"
       - "444:443"
-    privileged: true
     volumes:
       - ./:/var/www/html
       - ./docker/apache/logs:/var/log/apache2
